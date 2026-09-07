@@ -1,0 +1,33 @@
+name: Fix Chapter III full image
+on:
+  push:
+    paths:
+      - '.storybook-full-trigger'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show full Chapter III portrait
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('wedding-invite/index.html')
+          s=p.read_text()
+          css='''<style id="chapter3-full-fix">
+.storybook .book-page:nth-of-type(3){background:#050c12!important}
+.storybook .book-page:nth-of-type(3) img{object-fit:contain!important;object-position:center center!important;inset:0!important;width:100%!important;height:100%!important;transform:none!important;background:#050c12!important}
+</style>'''
+          if 'chapter3-full-fix' not in s:
+              s=s.replace('</head>',css+'</head>')
+          p.write_text(s)
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "csserumaga"
+          git config user.email "alltechissues@gmail.com"
+          git add wedding-invite/index.html
+          git commit -m "Show full Chapter III portrait" || exit 0
+          git push
