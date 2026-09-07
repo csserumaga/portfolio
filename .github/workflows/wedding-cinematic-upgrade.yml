@@ -1,0 +1,49 @@
+name: Wedding cinematic upgrade
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upgrade wedding invitation interactions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('wedding-invite/index.html')
+          s=p.read_text()
+          if 'cathedral-cinema' in s:
+              print('Upgrade already present')
+              raise SystemExit
+          s=s.replace("window.scrollBy(0,dt*.018)","window.scrollBy(0,dt*.058)")
+          s=s.replace('function nudgePause(ms=4500)','function nudgePause(ms=2200)')
+          css=r'''\n/* immersive scroll choreography */\n.cathedral-cinema{position:relative;height:150svh;background:#050c12;color:#fff;overflow:hidden}.cathedral-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center;background:#08131c}.cathedral-photo{position:absolute;inset:-4%;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Rubaga_Cathedral.jpg/1280px-Rubaga_Cathedral.jpg') center/cover no-repeat;transform:scale(calc(1.12 - var(--open,0)*.06));filter:brightness(calc(.48 + var(--open,0)*.38)) saturate(.88)}.cathedral-photo:after{content:\"\";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(255,235,195,.18),transparent 28%),linear-gradient(to top,rgba(3,8,12,.72),rgba(3,8,12,.08) 62%,rgba(3,8,12,.42))}.door{position:absolute;top:0;bottom:0;width:51%;z-index:3;background:linear-gradient(90deg,#07111a,#102a3a 55%,#09151f);box-shadow:0 0 45px rgba(0,0,0,.55);will-change:transform}.door:before{content:\"\";position:absolute;inset:6% 8%;border:1px solid rgba(209,170,115,.32);background:repeating-linear-gradient(90deg,transparent 0 22%,rgba(209,170,115,.06) 22.5% 23%,transparent 23.5% 45%)}.door.left{left:0;transform:translateX(calc(var(--open,0)*-103%))}.door.right{right:0;transform:translateX(calc(var(--open,0)*103%))}.door-glow{position:absolute;z-index:2;left:50%;top:0;bottom:0;width:22%;transform:translateX(-50%) scaleX(calc(.05 + var(--open,0)));background:linear-gradient(90deg,transparent,rgba(255,235,191,.24),transparent);filter:blur(16px);opacity:var(--open,0)}.cathedral-title{position:relative;z-index:5;text-align:center;width:min(820px,88vw);opacity:calc(.2 + var(--open,0)*.8);transform:translateY(calc((1 - var(--open,0))*40px)) scale(calc(.94 + var(--open,0)*.06));text-shadow:0 12px 38px rgba(0,0,0,.58)}.cathedral-title small{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:#e8cfaa}.cathedral-title h3{font:500 clamp(58px,10vw,116px)/.86 var(--serif);margin:14px 0 12px}.cathedral-title p{font:400 22px/1.5 var(--serif);color:rgba(255,255,255,.74);margin:auto;max-width:620px}.heart-field{position:absolute;inset:0;z-index:4;pointer-events:none}.heart-word{position:absolute;width:104px;height:90px;display:grid;place-items:center;text-align:center;opacity:0;transform:translateY(34px) scale(.65) rotate(var(--rot,0deg));transition:opacity .9s,transform 1.15s cubic-bezier(.16,.8,.18,1);filter:drop-shadow(0 10px 26px rgba(0,0,0,.28))}.chapter.active .heart-word{opacity:.9;transform:translateY(0) scale(1) rotate(var(--rot,0deg))}.heart-word .heart{position:absolute;font-size:90px;line-height:1;color:rgba(205,153,137,.38);text-shadow:0 0 28px rgba(255,220,210,.22)}.heart-word span{position:relative;z-index:2;font:500 14px var(--serif);letter-spacing:.08em;color:#fff}.heart-word:nth-child(1){left:7%;top:18%;--rot:-8deg;transition-delay:.05s}.heart-word:nth-child(2){right:8%;top:24%;--rot:7deg;transition-delay:.22s}.heart-word:nth-child(3){left:15%;top:54%;--rot:5deg;transition-delay:.38s}.heart-word:nth-child(4){right:13%;top:62%;--rot:-6deg;transition-delay:.54s}.heart-word:nth-child(5){left:48%;top:12%;--rot:2deg;transition-delay:.7s}.ribbon-words{position:absolute;z-index:4;left:0;right:0;top:12%;height:1px;pointer-events:none}.ribbon-words span{position:absolute;white-space:nowrap;font:500 clamp(22px,4vw,44px) var(--script);color:rgba(255,247,233,.72);text-shadow:0 8px 25px rgba(0,0,0,.4);opacity:0;transform:translateX(-25vw);transition:1.8s cubic-bezier(.16,.8,.18,1)}.chapter.active .ribbon-words span{opacity:.86;transform:translateX(0)}.ribbon-words span:nth-child(1){left:7%}.ribbon-words span:nth-child(2){right:8%;top:58vh;transition-delay:.35s}.chapter.portal img{clip-path:inset(calc((1 - var(--scene,0))*18%) calc((1 - var(--scene,0))*14%) round 36px);transform-origin:center}.chapter.portal .chapter-copy{transform:translateY(calc((1 - var(--scene,0))*30px));opacity:calc(.35 + var(--scene,0)*.65)}@media(max-width:760px){.heart-word{width:76px;height:68px}.heart-word .heart{font-size:68px}.heart-word span{font-size:11px}.cathedral-cinema{height:135svh}.cathedral-title p{font-size:18px}.ribbon-words span{font-size:28px}.heart-word:nth-child(3){left:5%}.heart-word:nth-child(4){right:4%}}\n'''
+          s=s.replace('</style>',css+'</style>',1)
+          marker='<section class="section venues" id="details">'
+          cat='''<section class="cathedral-cinema" id="cathedralCinema"><div class="cathedral-sticky" id="cathedralSticky"><div class="cathedral-photo"></div><div class="door-glow"></div><div class="door left"></div><div class="door right"></div><div class="cathedral-title"><small>The doors open to forever</small><h3>Rubaga Cathedral</h3><p>As the doors part, the place where the promise is made is revealed.</p></div></div></section>'''
+          s=s.replace(marker,cat+marker,1)
+          s=s.replace('<section class="chapter" id="story"','<section class="chapter portal" id="story"',1)
+          s=s.replace('<section class="chapter quote-scene" data-speed=".045">','<section class="chapter quote-scene portal" data-speed=".045">',1)
+          s=s.replace('<section class="chapter bw" data-speed=".052">','<section class="chapter bw portal" data-speed=".052">',1)
+          needle='alt="Pearl portrait" loading="lazy">'
+          hearts='<div class="heart-field"><div class="heart-word"><b class="heart">♥</b><span>Grace</span></div><div class="heart-word"><b class="heart">♥</b><span>Home</span></div><div class="heart-word"><b class="heart">♥</b><span>Faith</span></div><div class="heart-word"><b class="heart">♥</b><span>Always</span></div><div class="heart-word"><b class="heart">♥</b><span>Forever</span></div></div>'
+          s=s.replace(needle,needle+hearts,1)
+          needle2='alt="Dr Martin and Pearl celebrating" loading="lazy">'
+          s=s.replace(needle2,needle2+'<div class="ribbon-words"><span>joy found us</span><span>and stayed</span></div>',1)
+          old="ch.classList.toggle('active',Math.abs(center-innerHeight/2)<innerHeight*.58)}else ch.classList.remove('active')}}"
+          new="ch.classList.toggle('active',Math.abs(center-innerHeight/2)<innerHeight*.58);const scene=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height*.45)));ch.style.setProperty('--scene',scene.toFixed(3))}else ch.classList.remove('active')}const cc=document.getElementById('cathedralCinema');const cs=document.getElementById('cathedralSticky');if(cc&&cs){const cr=cc.getBoundingClientRect();const range=Math.max(1,cc.offsetHeight-innerHeight);const open=Math.max(0,Math.min(1,-cr.top/range));cs.style.setProperty('--open',open.toFixed(3))}}"
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wedding-invite/index.html
+          git diff --cached --quiet || git commit -m "Add cinematic gates, hearts and faster journey"
+          git push
