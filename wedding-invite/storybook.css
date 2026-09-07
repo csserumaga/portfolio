@@ -1,0 +1,12 @@
+/* Cinematic wedding storybook */
+.storybook{position:relative;background:#050c12;perspective:1500px;perspective-origin:50% 42%;isolation:isolate}
+.storybook .book-page{position:sticky!important;top:0!important;height:100svh!important;min-height:100svh!important;transform-style:preserve-3d;transform-origin:left center;backface-visibility:hidden;will-change:transform,filter;box-shadow:0 20px 72px rgba(0,0,0,.42);overflow:hidden}
+.storybook .book-page .chapter-copy{transition:opacity .16s linear,transform .16s linear}
+.storybook .book-page.focus-top img{object-position:center 16%!important}
+.storybook .page-edge{position:absolute;right:0;top:0;bottom:0;width:18px;z-index:7;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,248,230,.18),rgba(10,12,16,.34));opacity:.78}
+.storybook .page-number{position:absolute;right:20px;bottom:18px;z-index:8;font:500 10px var(--serif);letter-spacing:.18em;color:rgba(255,255,255,.48)}
+.storybook .book-page::before,.storybook .book-page::after{backface-visibility:hidden}
+.storybook .book-page.turning{box-shadow:18px 20px 80px rgba(0,0,0,.48)}
+.storybook .book-page.turning .page-edge{opacity:1;box-shadow:5px 0 20px rgba(255,245,220,.12)}
+@media(max-width:760px){.storybook{perspective:1050px}.storybook .book-page{transform-origin:left center}.storybook .book-page.focus-top img{object-position:center 10%!important}.storybook .page-edge{width:12px}}
+@media(prefers-reduced-motion:reduce){.storybook .book-page{position:relative!important;transform:none!important;filter:none!important}.storybook{perspective:none}}
