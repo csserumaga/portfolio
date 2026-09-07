@@ -1,0 +1,20 @@
+name: Chapter 3 Full Image
+on:
+  push:
+    paths:
+      - '.chapter3-full-trigger-2'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 -c "from pathlib import Path; p=Path('wedding-invite/index.html'); s=p.read_text(); css='<style id=\"chapter3-full-fix\">.storybook .book-page:nth-child(3){background:#050c12!important}.storybook .book-page:nth-child(3) img{object-fit:contain!important;object-position:center!important;inset:0!important;width:100%!important;height:100%!important;background:#050c12!important}</style>'; p.write_text(s if 'chapter3-full-fix' in s else s.replace('</head>',css+'</head>'))"
+      - run: |
+          git config user.name "csserumaga"
+          git config user.email "alltechissues@gmail.com"
+          git add wedding-invite/index.html
+          git commit -m "Make Chapter III photo fully visible" || true
+          git push
