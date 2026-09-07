@@ -1,0 +1,36 @@
+name: Inject Wedding Storybook
+on:
+  push:
+    paths:
+      - 'wedding-invite/storybook.css'
+      - 'wedding-invite/storybook.js'
+      - 'wedding-invite/.storybook-trigger'
+permissions:
+  contents: write
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject storybook assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html=Path('wedding-invite/index.html')
+          s=html.read_text()
+          css=Path('wedding-invite/storybook.css').read_text()
+          js=Path('wedding-invite/storybook.js').read_text()
+          import re
+          s=re.sub(r'<style id="storybook-inline">.*?</style>','',s,flags=re.S)
+          s=re.sub(r'<script id="storybook-inline">.*?</script>','',s,flags=re.S)
+          s=s.replace('</head>',f'<style id="storybook-inline">{css}</style></head>',1)
+          s=s.replace('</body>',f'<script id="storybook-inline">{js}</script></body>',1)
+          html.write_text(s)
+          PY
+      - name: Commit injected build
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add wedding-invite/index.html
+          git diff --cached --quiet || git commit -m 'Inject cinematic storybook page turns'
+          git push
