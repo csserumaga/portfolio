@@ -1,0 +1,32 @@
+name: Install Cinematic V3
+on:
+  push:
+    paths: ['.cinematic-v3-trigger']
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install enhancement assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('wedding-invite/index.html'); s=p.read_text()
+          if 'cinematic-v3.css' not in s: s=s.replace('</head>','<link rel="stylesheet" href="cinematic-v3.css?v=3"></head>')
+          if 'cinematic-v3.js' not in s: s=s.replace('</body>','<script src="cinematic-v3.js?v=3"></script></body>')
+          # accessibility + sharing metadata
+          if 'og:title' not in s:
+            s=s.replace('</title>','</title><meta property="og:title" content="Dr Martin & Pearl — Our Wedding"><meta property="og:description" content="Open our private invitation and journey with us to 22 December 2026."><meta name="twitter:card" content="summary_large_image">')
+          # make images non-blocking after first scene
+          s=s.replace('<img src=', '<img decoding="async" src=')
+          p.write_text(s)
+          PY
+      - name: Commit
+        run: |
+          git config user.name "csserumaga"
+          git config user.email "alltechissues@gmail.com"
+          git add wedding-invite/index.html
+          git commit -m "Install cinematic v3 experience" || exit 0
+          git push
