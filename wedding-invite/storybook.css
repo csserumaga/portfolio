@@ -10,3 +10,28 @@
 .storybook .book-page.turning .page-edge{opacity:1;box-shadow:5px 0 20px rgba(255,245,220,.12)}
 @media(max-width:760px){.storybook{perspective:1050px}.storybook .book-page{transform-origin:left center}.storybook .book-page.focus-top img{object-position:center 10%!important}.storybook .page-edge{width:12px}}
 @media(prefers-reduced-motion:reduce){.storybook .book-page{position:relative!important;transform:none!important;filter:none!important}.storybook{perspective:none}}
+
+/* V15 — luxury living-stationery landing polish */
+html body .intro{isolation:isolate!important;background:radial-gradient(ellipse at 50% 48%,#154a7a 0%,#0b3864 32%,#06284d 62%,#03162d 100%)!important}
+html body .intro:before{content:"M  &  P"!important;position:absolute!important;inset:0!important;display:grid!important;place-items:center!important;z-index:1!important;font:500 clamp(88px,25vw,240px)/1 var(--serif)!important;letter-spacing:.08em!important;color:rgba(224,190,132,.028)!important;text-shadow:0 1px 0 rgba(255,255,255,.018)!important;pointer-events:none!important;background:repeating-radial-gradient(ellipse at center,transparent 0 22px,rgba(218,184,128,.012) 23px 24px,transparent 25px 44px)!important}
+html body .intro:after{content:""!important;position:absolute!important;inset:0!important;z-index:2!important;pointer-events:none!important;background:radial-gradient(circle at 50% 58%,rgba(232,194,128,.12),transparent 14%),radial-gradient(circle at 50% 58%,rgba(255,236,196,.045),transparent 29%),linear-gradient(115deg,transparent 35%,rgba(255,241,210,.035) 49%,transparent 61%),repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 1px,transparent 1px 8px)!important;mix-blend-mode:screen}
+html body .intro .stage{z-index:10!important}
+html body .intro .introcopy{z-index:14!important}
+html body .intro .introcopy h1{text-shadow:0 8px 34px rgba(0,0,0,.48),0 0 42px rgba(237,204,148,.06)!important}
+html body .intro .introcopy:before{content:"✦";display:block;margin:0 auto 8px;color:rgba(225,190,132,.65);font-size:8px;letter-spacing:0;animation:landingStar 4.8s ease-in-out infinite}
+@keyframes landingStar{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15)}}
+html body .intro .envelope:before{content:"";position:absolute;inset:-18%;z-index:-1;border-radius:50%;background:radial-gradient(circle,rgba(217,177,111,.14),rgba(217,177,111,.045) 30%,transparent 68%);filter:blur(8px);animation:sealAura 5s ease-in-out infinite}
+@keyframes sealAura{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.04)}}
+html body .intro .back,html body .intro .foldl,html body .intro .foldr,html body .intro .foldb,html body .intro .flap{background-blend-mode:soft-light,normal!important}
+html body .intro .foldl,html body .intro .foldr,html body .intro .foldb,html body .intro .flap{filter:saturate(.92) contrast(1.03)}
+html body .intro .seal{animation:sealLiving 4.2s ease-in-out infinite!important;box-shadow:inset 0 0 0 5px rgba(255,237,202,.13),inset 0 0 0 11px rgba(70,39,13,.2),0 16px 42px rgba(0,0,0,.52),0 0 36px rgba(218,175,102,.15)!important}
+@keyframes sealLiving{0%,100%{filter:brightness(.96);transform:translate(-50%,-50%) scale(1)}45%{filter:brightness(1.08);transform:translate(-50%,-50%) scale(1.018)}60%{filter:brightness(1.02);transform:translate(-50%,-50%) scale(1.008)}}
+html body .intro .seal:before{animation:luxPulse 3.4s ease-in-out infinite!important}
+@keyframes luxPulse{0%,100%{transform:scale(.96);opacity:.22}50%{transform:scale(1.2);opacity:.58}}
+html body .intro .seal:after{text-shadow:0 2px 12px rgba(0,0,0,.6);letter-spacing:.28em!important}
+/* Fine ornamental gold threads — intentionally subtle */
+html body .intro .stage:before,html body .intro .stage:after{content:"";position:absolute;z-index:13;top:50%;width:22%;height:1px;pointer-events:none;opacity:.36;background:linear-gradient(90deg,transparent,#d8b577 45%,transparent);box-shadow:0 0 10px rgba(216,181,119,.2)}
+html body .intro .stage:before{left:-14%;transform:rotate(8deg)}
+html body .intro .stage:after{right:-14%;transform:rotate(-8deg)}
+@media(max-width:760px){html body .intro:before{font-size:31vw!important;color:rgba(224,190,132,.024)!important}html body .intro .stage:before,html body .intro .stage:after{width:16%;opacity:.28}html body .intro .introcopy:before{margin-bottom:5px}}
+@media(prefers-reduced-motion:reduce){html body .intro .seal,html body .intro .seal:before,html body .intro .envelope:before,html body .intro .introcopy:before{animation:none!important}}
