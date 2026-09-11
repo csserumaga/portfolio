@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="42%" r="78%"><stop offset="0" stop-color="#123d68"/><stop offset=".48" stop-color="#082847"/><stop offset="1" stop-color="#031426"/></radialGradient>
+  <linearGradient id="foldA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e365f"/><stop offset="1" stop-color="#061b32"/></linearGradient>
+  <linearGradient id="foldB" x1="1" y1="0" x2="0" y2="1"><stop stop-color="#123e6c"/><stop offset="1" stop-color="#071e38"/></linearGradient>
+  <radialGradient id="seal" cx="35%" cy="28%" r="72%"><stop offset="0" stop-color="#f8dc93"/><stop offset=".35" stop-color="#d3a04b"/><stop offset=".7" stop-color="#8f5d1d"/><stop offset="1" stop-color="#4c2f0b"/></radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="bigGlow"><feGaussianBlur stdDeviation="24"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="2.4"/></filter>
+  <pattern id="paper" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H16" stroke="#fff" stroke-opacity=".025"/></pattern>
+</defs>
+<rect width="1080" height="1920" fill="url(#bg)"/><rect width="1080" height="1920" fill="url(#paper)"/>
+<!-- subtle gold dust -->
+<g fill="#f6cd78" opacity=".55">
+<circle cx="152" cy="95" r="2"/><circle cx="840" cy="90" r="2.6"/><circle cx="905" cy="170" r="1.7"/><circle cx="976" cy="345" r="2.5"/><circle cx="88" cy="345" r="2"/><circle cx="322" cy="530" r="1.8"/><circle cx="716" cy="568" r="2.2"/><circle cx="184" cy="830" r="2.8"/><circle cx="905" cy="828" r="2.2"/><circle cx="511" cy="715" r="1.8"/><circle cx="152" cy="1405" r="2.2"/><circle cx="914" cy="1518" r="2.6"/><circle cx="423" cy="1704" r="2.1"/><circle cx="658" cy="1772" r="1.8"/>
+</g>
+<!-- ornate corners -->
+<g fill="none" stroke="#d7ad68" stroke-width="3" opacity=".82">
+<path d="M18 25c72 0 105 26 105 91 0 49-20 76-62 93 34-39 35-85-6-117-18-14-29-33-37-67z"/><path d="M1062 25c-72 0-105 26-105 91 0 49 20 76 62 93-34-39-35-85 6-117 18-14 29-33 37-67z"/>
+<path d="M18 1895c72 0 105-26 105-91 0-49-20-76-62-93 34 39 35 85-6 117-18 14-29 33-37 67z"/><path d="M1062 1895c-72 0-105-26-105-91 0-49 20-76 62-93-34 39-35 85 6 117 18 14 29 33 37 67z"/>
+</g>
+<!-- envelope folds -->
+<path d="M0 420 L540 1080 L1080 420 L1080 1240 L0 1240Z" fill="url(#foldA)" opacity=".78"/>
+<path d="M0 800 L540 1180 L0 1570Z" fill="url(#foldB)" opacity=".9"/>
+<path d="M1080 800 L540 1180 L1080 1570Z" fill="url(#foldB)" opacity=".9"/>
+<path d="M0 1920 L540 1155 L1080 1920Z" fill="#06192e" opacity=".94"/>
+<!-- fold edge light -->
+<g fill="none" stroke="#dca94f" stroke-width="2" opacity=".8" filter="url(#glow)"><path d="M0 420L540 1080L1080 420"/><path d="M0 800L540 1180L1080 800"/><path d="M0 1920L540 1155L1080 1920"/></g>
+<!-- botanical line art -->
+<g fill="none" stroke="#d4a75b" stroke-width="2.2" opacity=".48">
+<g transform="translate(20 480)"><path d="M0 200C140 150 120 35 250 0C205 80 220 160 320 210"/><path d="M80 150c-20-60 25-95 75-70 32 16 42 63 9 94-38 36-75 8-84-24z"/><path d="M118 102c18-33 69-32 89 4 20 37-8 77-48 77-41 0-62-40-41-81z"/><path d="M205 42c-5 54 14 94 61 122M170 71c38 12 72 7 101-15"/></g>
+<g transform="translate(1060 480) scale(-1 1)"><path d="M0 200C140 150 120 35 250 0C205 80 220 160 320 210"/><path d="M80 150c-20-60 25-95 75-70 32 16 42 63 9 94-38 36-75 8-84-24z"/><path d="M118 102c18-33 69-32 89 4 20 37-8 77-48 77-41 0-62-40-41-81z"/><path d="M205 42c-5 54 14 94 61 122M170 71c38 12 72 7 101-15"/></g>
+<g transform="translate(60 1050)"><path d="M0 270c95-155 165-205 302-256"/><path d="M83 183c-38-57 2-118 68-103 64 14 77 93 19 126-40 23-73 11-87-23z"/><path d="M153 135c14-49 69-72 109-39 39 33 27 93-21 111-54 20-103-17-88-72z"/><path d="M225 52c-21 74 10 117 70 153"/></g>
+<g transform="translate(1020 1050) scale(-1 1)"><path d="M0 270c95-155 165-205 302-256"/><path d="M83 183c-38-57 2-118 68-103 64 14 77 93 19 126-40 23-73 11-87-23z"/><path d="M153 135c14-49 69-72 109-39 39 33 27 93-21 111-54 20-103-17-88-72z"/><path d="M225 52c-21 74 10 117 70 153"/></g>
+</g>
+<!-- title -->
+<text x="540" y="92" text-anchor="middle" fill="#e2bb77" font-family="Arial,sans-serif" font-size="19" letter-spacing="9">A PRIVATE INVITATION</text>
+<text x="540" y="205" text-anchor="middle" fill="#fff0d0" font-family="Georgia,serif" font-size="84">Dr Martin &amp; Pearl</text>
+<line x1="298" y1="265" x2="500" y2="265" stroke="#d9b370"/><line x1="580" y1="265" x2="782" y2="265" stroke="#d9b370"/>
+<path d="M540 246c-14-21-43-6-35 18 7 22 35 35 35 35s28-13 35-35c8-24-21-39-35-18z" fill="none" stroke="#d9b370" stroke-width="2"/>
+<text x="540" y="320" text-anchor="middle" fill="#f6e6c3" font-family="Arial,sans-serif" font-size="18" letter-spacing="6">SOME THINGS ARE SIMPLY MEANT TO BE</text>
+<text x="540" y="358" text-anchor="middle" fill="#d9b474" font-family="Arial,sans-serif" font-size="15" letter-spacing="7">LOVE · FAITH · A BEAUTIFUL FUTURE</text>
+<!-- watermark -->
+<text x="540" y="620" text-anchor="middle" fill="#f7d995" fill-opacity=".08" font-family="Georgia,serif" font-size="220">M&amp;P</text>
+<!-- center glow -->
+<circle cx="540" cy="985" r="210" fill="#e6ad45" opacity=".15" filter="url(#bigGlow)"/>
+<g fill="none" stroke="#f2c568" filter="url(#glow)" opacity=".9"><path d="M365 1010c40-115 180-177 293-127 92 41 127 151 68 239" stroke-width="4"/><path d="M392 1058c68 77 189 93 275 27" stroke-width="3"/></g>
+<!-- seal -->
+<circle cx="540" cy="1030" r="126" fill="#271700" opacity=".7" filter="url(#soft)"/><circle cx="540" cy="1015" r="122" fill="url(#seal)" stroke="#f5d58e" stroke-width="7"/><circle cx="540" cy="1015" r="94" fill="none" stroke="#f5d58e" stroke-width="3" opacity=".65"/><circle cx="540" cy="1015" r="78" fill="none" stroke="#6c4515" stroke-width="5" opacity=".45"/>
+<text x="540" y="1037" text-anchor="middle" fill="#ffe7b0" font-family="Georgia,serif" font-size="54">M&amp;P</text>
+<path d="M494 1067c25 16 68 16 92 0M505 1073c18 18 52 18 70 0" fill="none" stroke="#f4d189" stroke-width="2" opacity=".8"/>
+<!-- CTA -->
+<text x="540" y="1285" text-anchor="middle" fill="#e7c27f" font-family="Arial,sans-serif" font-size="18" letter-spacing="8">TAP TO OPEN</text>
+<line x1="540" y1="1335" x2="540" y2="1420" stroke="#d8b06b"/>
+<path d="M540 1450c-11-17-34-5-28 14 6 17 28 28 28 28s22-11 28-28c6-19-17-31-28-14z" fill="none" stroke="#d8b06b" stroke-width="2"/>
+<text x="540" y="1558" text-anchor="middle" fill="#dfb874" font-family="Arial,sans-serif" font-size="18" letter-spacing="8">THE NEXT CHAPTER</text><text x="540" y="1600" text-anchor="middle" fill="#dfb874" font-family="Arial,sans-serif" font-size="18" letter-spacing="8">BEGINS SOON</text>
+</svg>
